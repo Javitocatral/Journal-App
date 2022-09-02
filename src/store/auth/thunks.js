@@ -1,0 +1,66 @@
+import {loginWithEmailPassword, registerUserWithEmailPassword, singInWithGoogle, logoutFirebase } from '../../fireBase/provider';
+import { clearNoteLogout } from '../journal';
+import { checkingCredentials, logout, login } from './authSlice';
+
+export const checkingAuthentication = () => {
+    return async( dispatch ) => {
+        
+        dispatch( checkingCredentials() );
+        
+    }
+}
+
+
+export const startGoogleSignIn = () => {
+    return async( dispatch ) => {
+        
+        dispatch( checkingCredentials() );
+        
+        const result = await singInWithGoogle();
+        if ( !result.ok ) return dispatch( logout( result.errorMessage ) );
+        
+        dispatch( login( result ))
+        
+    }
+}
+
+
+export const startCreatingUserWithEmailPassword = ({ email, password, displayName }) => {
+    return async( dispatch ) => {
+        
+        dispatch( checkingCredentials() );
+        
+        const result = await registerUserWithEmailPassword({ email, password, displayName });
+        if ( !result.ok ) return dispatch( logout( result.errorMessage ) );
+        
+        dispatch( login( result ))
+        
+    }
+    
+}
+
+
+export const startLoginWithEmailPassword = ({ email, password }) => {
+    return async( dispatch ) => {
+        
+        dispatch( checkingCredentials() );
+        
+        console.log(email);
+        const resp = await loginWithEmailPassword({ email, password });
+        
+        if ( !resp.ok ) return dispatch( logout( resp ) );
+        dispatch( login( resp ));
+        
+    }
+}
+
+
+export const startLogout = () => {
+    return async( dispatch ) => {
+        
+        await logoutFirebase();
+        dispatch(clearNoteLogout())
+        dispatch( logout() );
+
+    }
+}
