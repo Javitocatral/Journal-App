@@ -1,6 +1,6 @@
-import { Savings } from '@mui/icons-material';
+
 import { createSlice } from '@reduxjs/toolkit';
-import { loadNotes } from '../../helpers';
+
 
 
 export const journalSlice = createSlice({
@@ -73,4 +73,12 @@ export const journalSlice = createSlice({
   }
 })
 // Action creators are generated for each case reducer function
-export const { addNewEmptyNote, setActiveNote,setNotes, setSaving, updateNote, deleteNoteById, savingNewNotes, setPhotosActiveNote,clearNoteLogout } = journalSlice.actions
+export const { addNewEmptyNote, 
+  setActiveNote,
+  setNotes,
+  setSaving, 
+  updateNote, 
+  deleteNoteById, 
+  savingNewNotes, 
+  setPhotosActiveNote,
+  clearNoteLogout } = journalSlice.actions

@@ -3,8 +3,8 @@
 
 export const fileUpolad = async (file) => {
 
-    if(!file ) throw new Error('No tenemos nungun archivo');
-    // if(!file) return null;
+    // if(!file ) throw new Error('No tenemos nungun archivo');
+    if(!file) return null;
 
     const cloudUrl = 'https://api.cloudinary.com/v1_1/ddqcctsr2/upload'
     const formData = new FormData();

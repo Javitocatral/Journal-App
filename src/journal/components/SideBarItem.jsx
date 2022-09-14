@@ -11,6 +11,7 @@ export const SideBarItem = ({title= '', body, id, date, imageURL=[]}) => {
 
   const onClickNote = () => {
    dispatch (setActiveNote({title, body, id , date, imageURL}));
+   console.log(imageURL)
   }
   const newTitle = useMemo(()=>{
     return title.length > 17
